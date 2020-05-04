@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 
 # Change mirror
   # Do not enable in dockerhub this because dockerhub is processed in U.S.!  
-  # RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list 
+  #RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list 
 
 # apt update & upgrade 
   RUN apt-get update \
@@ -22,6 +22,10 @@ FROM ubuntu:20.04
       && apt-get update 
 
   RUN apt-get install -y python3-pip
+
+# Make link 
+  RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1 \
+      &&  update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 
 # Installing python packages 
   COPY . /tmp_docker
