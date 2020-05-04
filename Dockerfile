@@ -5,12 +5,12 @@ FROM ubuntu:20.04
 
 # Change mirror
   # Do not enable in dockerhub this because dockerhub is processed in U.S.!  
-  #RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list 
+  RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list 
 
 # apt update & upgrade 
   RUN apt-get update \
       && apt-get upgrade -y
-  RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+  #RUN apt-get install -y --no-install-recommends apt-utils
 
 # Install emacs 
   RUN apt-get install -y emacs
@@ -19,9 +19,8 @@ FROM ubuntu:20.04
 
   #RUN apt-get install -y python3-pip \
   RUN apt-get install -y build-essential libssl-dev libffi-dev python3-dev python-setuptools \
+      && apt-get install -y python3-pip python3-venv \
       && apt-get update 
-
-  RUN apt-get install -y python3-pip
 
 # Make link 
   RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1 \
