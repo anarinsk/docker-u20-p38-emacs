@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 
 # Change mirror
   # Do not enable in dockerhub this because dockerhub is processed in U.S.!  
-  RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list 
+  # RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list 
 
 # apt update & upgrade 
   RUN apt-get update \
